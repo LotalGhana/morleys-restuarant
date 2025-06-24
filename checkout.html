@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d84315" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout - Morleys Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+  <header>
+    <button onclick="window.history.back()">←</button>
+    <h1>Checkout</h1>
+  </header>
+
+ <main class="checkout-page">
+  <h2>Total Amount: <span id="checkoutTotal">GHS 0.00</span></h2>
+
+  <h3>Select Payment Method:</h3>
+  <form id="paymentForm">
+    <label><input type="radio" name="paymentMethod" value="Mobile Money" required> Mobile Money</label><br>
+    <label><input type="radio" name="paymentMethod" value="Telecel Cash"> Telecel Cash</label><br>
+    <label><input type="radio" name="paymentMethod" value="VISA"> VISA</label><br><br>
+<button type="button" onclick="payWithPaystack()" class="checkout-btn">💳 Pay with Paystack</button>
+
+    <div id="momoFields" class="payment-fields" style="display: none;">
+      <label>Account Name:
+        <input type="text" id="momoName" placeholder="e.g. John Doe">
+      </label><br><br>
+      <label>Account Number:
+        <input type="text" id="momoNumber" placeholder="e.g. 024XXXXXXX">
+      </label>
+    </div>
+
+    <div id="visaFields" class="payment-fields" style="display: none;">
+      <label>Cardholder Name:
+        <input type="text" id="visaName" placeholder="e.g. John Doe">
+      </label><br><br>
+      <label>Card Number:
+        <input type="text" id="visaNumber" placeholder="e.g. 1234 5678 9012 3456">
+      </label><br><br>
+      <label>Expiry Date:
+        <input type="month" id="visaExpiry">
+      </label><br><br>
+      <label>CVV:
+        <input type="text" id="visaCVV" maxlength="3" placeholder="e.g. 123">
+      </label>
+    </div>
+<label>Phone Number for SMS (optional):  
+  <input type="text" id="phoneNumber" placeholder="+23324XXXXXXX">
+</label><br><br>
+
+    <button type="submit" class="checkout-btn">Pay Now</button>
+  </form>
+</main>
+
+
+  <script src="script.js"></script>
+<button id="installApp" style="display:none;">📱 Install Morleys App</button>
+
+</body>
+</html>

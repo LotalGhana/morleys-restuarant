@@ -1,0 +1,21 @@
+{
+  "name": "Morleys Restaurant",
+  "short_name": "Morleys",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fff8f2",
+  "theme_color": "#d84315",
+  "description": "Order food from Morleys Restaurant",
+  "icons": [
+    {
+      "src": "images/ddd.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/ddd.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

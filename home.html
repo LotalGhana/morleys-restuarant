@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d84315" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morleys Restaurant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="user-info">
+    <h3 id="username">Hello, User</h3>
+    <p>💰 Wallet: GHS <span id="wallet">100.00</span></p>
+  </div>
+ <ul>
+  <li onclick="window.location.href='orders.html'">📦 Order History</li>
+  <li>❓ Help</li>
+</ul>
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+
+  <!-- Top Bar -->
+  <header>
+    <button onclick="toggleSidebar()">☰</button>
+    <h1>Morleys Restaurant</h1>
+  </header>
+
+  <!-- Food Categories as Buttons -->
+  <div class="category-bar">
+    <button class="category-btn" onclick="showCategory('Pizza')">🍕 Pizza</button>
+    <button class="category-btn" onclick="showCategory('Shawarma')">🌯 Shawarma</button>
+    <button class="category-btn" onclick="showCategory('Jollof Rice')">🍛 Jollof Rice</button>
+    <button class="category-btn" onclick="showCategory('Fried Rice')">🍚 Fried Rice</button>
+    <button class="category-btn" onclick="showCategory('Drinks')">🥤 Drinks</button>
+  </div>
+
+  <!-- Dynamic Food Display -->
+  <main id="foodDisplay">
+    <h2>Select a category above to view items</h2>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <footer>
+  <nav class="bottom-nav">
+    <a href="home.html" class="nav-item">
+      <div>🏠</div>
+      <small>Home</small>
+    </a>
+    <a href="#" class="nav-item">
+      <div>🔍</div>
+      <small>Search</small>
+    </a>
+    <a href="cart.html" class="nav-item">
+  <div>🛒</div>
+  <small>Cart</small>
+</a>
+    <a href="#" class="nav-item">
+      <div>📍</div>
+      <small>Location</small>
+    </a>
+  </nav>
+</footer>
+  <script src="script.js"></script>
+<button id="installApp" style="display:none;">📱 Install Morleys App</button>
+</body>
+</html>

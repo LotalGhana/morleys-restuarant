@@ -366,3 +366,8 @@ function payWithPaystack() {
   handler.openIframe();
 }
 
+const nameField = document.getElementById('fullname');
+if (!nameField) {
+  console.error("Missing input with ID 'fullname'");
+  return;
+}

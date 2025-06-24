@@ -10,21 +10,41 @@ function goToLogin() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const signupForm = document.getElementById("signupForm");
+
   if (signupForm) {
     signupForm.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      const name = document.getElementById("signupName").value;
       const email = document.getElementById("signupEmail").value;
       const password = document.getElementById("signupPassword").value;
 
       firebaseFns.createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert("Account created! You can now log in.");
-          window.location.href = "login.html";
+        .then(async (userCredential) => {
+          const user = userCredential.user;
+
+          // Send verification
+          await user.sendEmailVerification();
+
+          // Save user profile in Firestore
+          await firebaseFns.setUserDoc(user.uid, {
+            uid: user.uid,
+            email: user.email,
+            name: name,
+            isVerified: false,
+            createdAt: firebaseFns.getServerTimestamp()
+          });
+
+          alert("✅ Account created! Please check your email to verify.");
+          window.location.href = "verify.html";
         })
         .catch((error) => {
-          alert(error.message);
+          alert("❌ Signup failed: " + error.message);
         });
     });
+  }
+});
+
   }
 
   const loginForm = document.getElementById("loginForm");
@@ -566,3 +586,4 @@ const analytics = getAnalytics(app);
     alert("Signup failed: " + error.message);
   });
                          
+

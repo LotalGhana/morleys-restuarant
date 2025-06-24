@@ -321,7 +321,7 @@ function payWithPaystack() {
   const email = `${name.replace(" ", "").toLowerCase()}@morleys.com`; // mock email
 
   let handler = PaystackPop.setup({
-    key: 'pk_test_xxxxxxxxxxxxxxxxxxxxx', // Replace with your real public key
+    key: 'pk_live_132bcfe226499aceb0d2ecd71f4890a495c283b3', // Replace with your real public key
     email: email,
     amount: parseFloat(total) * 100, // amount in pesewas
     currency: 'GHS',

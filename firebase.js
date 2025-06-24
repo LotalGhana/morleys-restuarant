@@ -33,3 +33,11 @@
     signOut: firebase.auth().signOut
   };
 </script>
+
+window.firebaseFns = {
+  createUserWithEmailAndPassword: firebase.auth().createUserWithEmailAndPassword,
+  signInWithEmailAndPassword: firebase.auth().signInWithEmailAndPassword,
+  signOut: firebase.auth().signOut,
+  setUserDoc: (uid, data) => firebase.firestore().collection("users").doc(uid).set(data),
+  getServerTimestamp: () => firebase.firestore.FieldValue.serverTimestamp()
+};

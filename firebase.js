@@ -1,11 +1,13 @@
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_BUCKET",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
+  apiKey: "AIzaSyD7viifv2hVZenTc7FX2f_fhusrMb_QbEg",
+  authDomain: "morleys-restaurant.firebaseapp.com",
+  projectId: "morleys-restaurant",
+  storageBucket: "morleys-restaurant.firebasestorage.app",
+  messagingSenderId: "430306650328",
+  appId: "1:430306650328:web:ecfe9f04bf7b9d17154fad",
+  measurementId: "G-JF16BTQ2Q9"
+};
+
 
   // Initialize Firebase
   const app = firebase.initializeApp(firebaseConfig);

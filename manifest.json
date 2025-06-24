@@ -8,12 +8,12 @@
   "description": "Order food from Morleys Restaurant",
   "icons": [
     {
-      "src": "images/ddd.png",
+      "src": "icons/ddd.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "images/ddd.png",
+      "src": "icons/ddd.png",
       "sizes": "512x512",
       "type": "image/png"
     }

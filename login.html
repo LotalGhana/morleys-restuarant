@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-<script src="firebase.js" defer></script>
-<script src="script.js" defer></script>
-
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#d84315" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login - Morleys Restaurant</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#d84315" />
+
+  <!-- Firebase SDKs (Compat Version) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <div class="form-container">
     <h2>Login to Your Account</h2>
-    <form id="loginForm">
-      <input type="email" id="loginEmail" placeholder="Email Address" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
+    <form id="loginForm" novalidate>
+      <label for="loginEmail">Email Address</label>
+      <input type="email" id="loginEmail" placeholder="Email Address" required />
+
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" placeholder="Password" autocomplete="off" required />
+
       <button type="submit">Login</button>
     </form>
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </div>
 
+  <!-- Firebase and App Logic Scripts -->
+  <script src="firebase.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

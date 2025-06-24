@@ -1,4 +1,6 @@
 // firebase.js
+
+// Firebase config object
 const firebaseConfig = {
   apiKey: "AIzaSyD7viifv2hVZenTc7FX2f_fhusrMb_QbEg",
   authDomain: "morleys-restaurant.firebaseapp.com",
@@ -11,10 +13,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// Auth & Firestore references
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Expose globally
+// Make globally accessible
 window.auth = auth;
 window.db = db;
 window.firebaseFns = {

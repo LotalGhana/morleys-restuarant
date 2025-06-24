@@ -92,3 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+function logout() {
+  firebase.auth().signOut().then(() => {
+    localStorage.removeItem("morleysUser");
+    window.location.href = "login.html";
+  });
+}
+
+function showCategory(categoryName) {
+  document.getElementById("foodDisplay").innerHTML =
+    `<h2>Items in ${categoryName}</h2>`;
+}
+

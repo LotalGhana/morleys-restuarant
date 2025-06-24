@@ -1,4 +1,4 @@
-// Navigation helpers (optional)
+// Navigation helpers
 function goToSignUp() {
   window.location.href = "signup.html";
 }
@@ -15,27 +15,34 @@ document.addEventListener('DOMContentLoaded', () => {
     signupForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const name = document.getElementById("signupName").value;
-      const email = document.getElementById("signupEmail").value;
-      const password = document.getElementById("signupPassword").value;
+      const nameInput = document.getElementById("signupName");
+      const emailInput = document.getElementById("signupEmail");
+      const passwordInput = document.getElementById("signupPassword");
 
-      firebaseFns.createUserWithEmailAndPassword(auth, email, password)
+      if (!nameInput || !emailInput || !passwordInput) {
+        alert("Please complete the form.");
+        return;
+      }
+
+      const name = nameInput.value;
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
 
-          // Send email verification
           await user.sendEmailVerification();
 
-          // Save user data in Firestore
-          await firebaseFns.setUserDoc(user.uid, {
+          await firebase.firestore().collection("users").doc(user.uid).set({
             uid: user.uid,
             email: user.email,
             name: name,
             isVerified: false,
-            createdAt: firebaseFns.getServerTimestamp()
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
           });
 
-          alert("✅ Account created! Please check your email to verify.");
+          alert("✅ Account created! Please verify your email.");
           window.location.href = "verify.html";
         })
         .catch((error) => {
@@ -51,10 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const email = document.getElementById("loginEmail").value;
-      const password = document.getElementById("loginPassword").value;
+      const emailInput = document.getElementById("loginEmail");
+      const passwordInput = document.getElementById("loginPassword");
 
-      firebaseFns.signInWithEmailAndPassword(auth, email, password)
+      if (!emailInput || !passwordInput) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
 
@@ -63,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
           }
 
-          // Store session locally
           localStorage.setItem("morleysUser", JSON.stringify({
             uid: user.uid,
             email: user.email

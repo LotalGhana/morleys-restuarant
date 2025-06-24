@@ -19,7 +19,16 @@
       </div>
     </div>
   </div>
-
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("morleysUser"));
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("welcomeUser").innerText = `Welcome back, ${user.email}`;
+    }
+  });
+</script>
   <script src="script.js"></script>
 </body>
 </html>

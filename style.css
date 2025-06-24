@@ -1,3 +1,4 @@
+/* Reset and universal styles */
 * {
   margin: 0;
   padding: 0;
@@ -11,8 +12,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
 }
 
+/* Welcome container */
 .welcome-container {
   text-align: center;
   background: white;
@@ -56,6 +61,7 @@ body {
   transform: scale(1.05);
 }
 
+/* Form container */
 .form-container {
   max-width: 400px;
   margin: 60px auto;
@@ -71,7 +77,8 @@ body {
   margin-bottom: 25px;
 }
 
-form input {
+form input,
+form button {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
@@ -83,12 +90,9 @@ form input {
 form button {
   background-color: #d84315;
   color: white;
-  padding: 12px 25px;
   border: none;
   border-radius: 25px;
-  font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
   transition: background-color 0.3s ease;
 }
 
@@ -99,7 +103,6 @@ form button:hover {
 .form-container p {
   margin-top: 20px;
 }
-
 
 /* Category Bar */
 .category-bar {
@@ -173,7 +176,7 @@ form button:hover {
   background-color: #bf360c;
 }
 
-
+/* Cart Page */
 .cart-page {
   padding: 20px;
 }
@@ -233,7 +236,7 @@ form button:hover {
   cursor: pointer;
 }
 
-
+/* Checkout Page */
 .checkout-page {
   padding: 20px;
 }
@@ -266,22 +269,11 @@ form button:hover {
   display: block;
 }
 
-.checkout-btn {
-  padding: 12px;
-  width: 100%;
-  font-size: 16px;
-  background: #d84315;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
 .checkout-btn:hover {
   background-color: #bf360c;
 }
 
+/* Order History */
 .order-history-page {
   padding: 20px;
 }
@@ -348,8 +340,6 @@ form button:hover {
   background-color: #1b5e20;
 }
 
-
-
 /* Sidebar */
 .sidebar {
   position: fixed;
@@ -401,6 +391,7 @@ form button:hover {
   cursor: pointer;
 }
 
+/* Bottom nav */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -437,7 +428,7 @@ form button:hover {
   font-size: 12px;
 }
 
-
+/* Loader */
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #d84315;
@@ -451,4 +442,25 @@ form button:hover {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Media queries */
+@media (min-width: 600px) {
+  .food-item,
+  .cart-item,
+  .order-item {
+    flex: 1 1 45%;
+  }
+}
+
+@media (min-width: 900px) {
+  .form-container {
+    max-width: 600px;
+  }
+
+  .food-item,
+  .cart-item,
+  .order-item {
+    flex: 1 1 30%;
+  }
 }

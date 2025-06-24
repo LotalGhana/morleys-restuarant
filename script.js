@@ -312,3 +312,57 @@ function printOrder(orderId) {
 
   printWindow.document.close();
 }
+
+function payWithPaystack() {
+  const cart = JSON.parse(localStorage.getItem('morleysCart')) || [];
+  const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+  const name = document.getElementById("momoName")?.value || document.getElementById("visaName")?.value || "Customer";
+  const phone = document.getElementById("phoneNumber").value || "0000000000";
+  const email = `${name.replace(" ", "").toLowerCase()}@morleys.com`; // mock email
+
+  let handler = PaystackPop.setup({
+    key: 'pk_test_xxxxxxxxxxxxxxxxxxxxx', // Replace with your real public key
+    email: email,
+    amount: parseFloat(total) * 100, // amount in pesewas
+    currency: 'GHS',
+    ref: 'morleys-' + Date.now(),
+    metadata: {
+      custom_fields: [
+        {
+          display_name: "Customer Name",
+          variable_name: "customer_name",
+          value: name
+        },
+        {
+          display_name: "Mobile Number",
+          variable_name: "mobile_number",
+          value: phone
+        }
+      ]
+    },
+    callback: function (response) {
+      // Save Order
+      const orderHistory = JSON.parse(localStorage.getItem('morleysOrders')) || [];
+      const order = {
+        items: cart,
+        total: parseFloat(total),
+        method: "Paystack - " + response.payment_type,
+        date: new Date().toLocaleString(),
+        ref: response.reference
+      };
+
+      orderHistory.push(order);
+      localStorage.setItem('morleysOrders', JSON.stringify(orderHistory));
+      localStorage.removeItem('morleysCart');
+
+      alert("✅ Payment successful! Ref: " + response.reference);
+      window.location.href = "orders.html";
+    },
+    onClose: function () {
+      alert('Payment window closed.');
+    }
+  });
+
+  handler.openIframe();
+}
+

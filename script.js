@@ -44,6 +44,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+  firebaseFns.signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+
+    if (!user.emailVerified) {
+      alert("⚠️ Please verify your email before logging in.");
+      user.sendEmailVerification().then(() => {
+        alert("📩 Verification email resent.");
+        window.location.href = "verify.html";
+      });
+      return;
+    }
+
+    // Verified – continue
+    localStorage.setItem("morleysUser", JSON.stringify({ uid: user.uid, email: user.email }));
+    window.location.href = "index.html";
+  })
+  .catch((error) => {
+    alert("Login failed: " + error.message);
+  });
+
 
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');

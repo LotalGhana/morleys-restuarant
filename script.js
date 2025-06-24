@@ -9,39 +9,43 @@ function goToLogin() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Sign Up logic
- document.getElementById("signupForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const email = document.getElementById("signupEmail").value;
-  const password = document.getElementById("signupPassword").value;
+  const signupForm = document.getElementById("signupForm");
+  if (signupForm) {
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
 
-  firebaseFns.createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      alert("Account created! You can now log in.");
-      window.location.href = "login.html";
-    })
-    .catch((error) => {
-      alert(error.message);
+      firebaseFns.createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Account created! You can now log in.");
+          window.location.href = "login.html";
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     });
-});
+  }
 
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
 
-  // Login logic
- document.getElementById("loginForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-
-  firebaseFns.signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      alert("Login successful!");
-      localStorage.setItem("morleysUser", JSON.stringify({ uid: user.uid, email: user.email }));
-      window.location.href = "index.html";
-    })
-    .catch((error) => {
-      alert("Login failed: " + error.message);
+      firebaseFns.signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          alert("Login successful!");
+          localStorage.setItem("morleysUser", JSON.stringify({ uid: user.uid, email: user.email }));
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+        });
     });
+  }
 });
 
   firebaseFns.signInWithEmailAndPassword(auth, email, password)

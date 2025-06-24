@@ -522,3 +522,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+
+ firebaseFns.createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+
+    user.sendEmailVerification()
+      .then(() => {
+        alert("✅ Verification email sent! Please check your inbox.");
+        window.location.href = "verify.html";
+      })
+      .catch((error) => {
+        alert("❌ Failed to send verification: " + error.message);
+      });
+  })
+  .catch((error) => {
+    alert("Signup failed: " + error.message);
+  });
+                         

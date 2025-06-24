@@ -10,46 +10,40 @@ function goToLogin() {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Sign Up logic
-  const signupForm = document.getElementById('signupForm');
-  if (signupForm) {
-    signupForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+ document.getElementById("signupForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
 
-      const name = document.getElementById('fullname').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const password = document.getElementById('password').value;
-
-      const user = { name, email, phone, password };
-      localStorage.setItem('morleysUser', JSON.stringify(user));
-
-      alert('Account created successfully!');
-      window.location.href = 'login.html';
+  firebaseFns.createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      alert("Account created! You can now log in.");
+      window.location.href = "login.html";
+    })
+    .catch((error) => {
+      alert(error.message);
     });
-  }
+});
+
 
   // Login logic
-  const loginForm = document.getElementById('loginForm');
-  if (loginForm) {
-    loginForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+ document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
 
-      const loginEmail = document.getElementById('loginEmail').value;
-      const loginPassword = document.getElementById('loginPassword').value;
-
-      const storedUser = JSON.parse(localStorage.getItem('morleysUser'));
-
-      if (storedUser && storedUser.email === loginEmail && storedUser.password === loginPassword) {
-        alert(`Welcome back, ${storedUser.name}!`);
-        // Save login state (optional)
-        localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = 'home.html'; // Replace with your main/home page
-      } else {
-        alert('Invalid email or password!');
-      }
+  firebaseFns.signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("Login successful!");
+      localStorage.setItem("morleysUser", JSON.stringify({ uid: user.uid, email: user.email }));
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      alert("Login failed: " + error.message);
     });
-  }
 });
+
 
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');

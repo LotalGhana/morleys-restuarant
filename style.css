@@ -464,3 +464,98 @@ form button:hover {
     flex: 1 1 30%;
   }
 }
+
+/* Base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px;
+}
+
+.sidebar {
+  min-width: 150px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Food items */
+.food-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffe5b4;
+  border-radius: 10px;
+  padding: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design for Small Screens */
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .food-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .food-item img {
+    max-width: 120px;
+    height: auto;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.food-item img {
+  width: 80px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.food-item button {
+  background-color: #f4511e;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.food-item button:hover {
+  background-color: #d84315;
+}

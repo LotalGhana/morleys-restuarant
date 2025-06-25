@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Morleys Restaurant</title>
 
-  <!-- App Appearance -->
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#d84315" />
+
 </head>
+
 <body>
-  <!-- 📱 Install App Button -->
+  <!-- Install App Button -->
   <button id="installApp" style="display: none;">📱 Install Morleys App</button>
 
   <!-- Sidebar -->
@@ -69,7 +70,12 @@
     </nav>
   </footer>
 
-  <!-- Script Logic -->
+  <!-- JS -->
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
